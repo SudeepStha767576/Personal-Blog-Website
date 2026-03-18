@@ -4,13 +4,23 @@
 
 @layer base {
   :root {
-    --background: 255 255 255;
-    --foreground: 15 23 42;
+    /* Light mode */
+    --background: 248 250 252;
+    --foreground: 20 24 32;
+    --accent: 79 70 229;
+    --accent-light: 238 242 255;
+    --text-secondary: 100 116 139;
+    --border: 226 232 240;
   }
 
   .dark {
+    /* Dark mode */
     --background: 15 23 42;
     --foreground: 248 250 252;
+    --accent: 129 140 248;
+    --accent-light: 30 41 59;
+    --text-secondary: 148 163 184;
+    --border: 30 41 59;
   }
 
   html {
@@ -18,11 +28,11 @@
   }
 
   body {
-    @apply bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100 antialiased;
+    @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 antialiased;
   }
 
   ::selection {
-    @apply bg-brand-500 text-white;
+    @apply bg-indigo-500 text-white;
   }
 
   /* Scrollbar */
@@ -34,45 +44,60 @@
     @apply bg-slate-100 dark:bg-slate-800;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-400 dark:bg-slate-600 rounded-full;
+    @apply bg-slate-300 dark:bg-slate-600 rounded-full;
   }
 }
 
 @layer components {
   .container-blog {
-    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .prose-blog {
     @apply prose prose-slate prose-lg max-w-none
-      prose-headings:font-bold prose-headings:tracking-tight
-      prose-a:text-brand-600
-      prose-img:rounded-xl prose-img:shadow-md;
+      prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-900
+      prose-p:text-slate-700 prose-p:leading-relaxed
+      prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-slate-900 prose-strong:font-semibold
+      prose-code:text-slate-900 prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+      prose-code:text-sm prose-code:font-mono
+      prose-pre:bg-slate-900 prose-pre:text-slate-50
+      prose-img:rounded-xl prose-img:shadow-lg prose-img:my-6;
   }
 
   .dark .prose-blog {
-    @apply prose-invert;
+    @apply prose-invert
+      prose-headings:text-slate-50
+      prose-p:text-slate-300
+      prose-a:text-indigo-400
+      prose-strong:text-slate-100
+      prose-code:text-slate-100 prose-code:bg-slate-800
+      prose-img:shadow-xl;
   }
 
   .tag-badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-      bg-brand-50 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300
-      hover:bg-brand-100 dark:hover:bg-brand-900/60 transition-colors cursor-pointer;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+      bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300
+      hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors cursor-pointer
+      border border-indigo-200 dark:border-indigo-800;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
-      bg-brand-600 text-white hover:bg-brand-700 transition-colors;
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium
+      bg-indigo-600 text-white hover:bg-indigo-700 transition-colors
+      dark:bg-indigo-600 dark:hover:bg-indigo-700 shadow-sm hover:shadow-md;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
-      bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800
-      dark:text-slate-300 dark:hover:bg-slate-700 transition-colors;
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium
+      bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800
+      dark:text-slate-100 dark:hover:bg-slate-700 transition-colors
+      border border-slate-200 dark:border-slate-700;
   }
 
   .card {
-    @apply rounded-2xl border border-slate-200 dark:border-slate-700 bg-white
-      dark:bg-slate-800 overflow-hidden hover:shadow-lg transition-shadow;
+    @apply rounded-xl border border-slate-200 dark:border-slate-800 bg-white
+      dark:bg-slate-800/50 overflow-hidden hover:shadow-lg transition-shadow
+      hover:border-slate-300 dark:hover:border-slate-700;
   }
 }

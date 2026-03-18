@@ -6,7 +6,6 @@ import { useState } from 'react'
 
 const navLinks = [
   { href: '/blog', label: 'Articles' },
-  { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
 ]
 
@@ -15,26 +14,26 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-      <div className="container-blog flex items-center justify-between h-14">
+    <nav className="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm">
+      <div className="container-blog flex items-center justify-between py-4">
         {/* Logo */}
         <Link
           href="/"
-          className="font-bold text-slate-900 dark:text-slate-100 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+          className="font-bold text-lg text-slate-900 dark:text-slate-50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors tracking-tight"
         >
           CA Insights
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden sm:flex items-center gap-6">
+        <div className="hidden sm:flex items-center gap-8">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               className={`text-sm font-medium transition-colors ${
                 pathname.startsWith(href)
-                  ? 'text-brand-600 dark:text-brand-400'
-                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
+                  ? 'text-indigo-600 dark:text-indigo-400'
+                  : 'text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400'
               }`}
             >
               {label}
@@ -44,7 +43,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className="sm:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+          className="sm:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -62,16 +61,16 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="sm:hidden border-t border-slate-200 dark:border-slate-700 py-2">
+        <div className="sm:hidden border-t border-slate-200 dark:border-slate-800 py-3 bg-slate-50 dark:bg-slate-800/50">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className={`block px-4 py-2 text-sm font-medium transition-colors ${
+              className={`block px-4 py-2.5 text-sm font-medium transition-colors ${
                 pathname.startsWith(href)
-                  ? 'text-brand-600 dark:text-brand-400'
-                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
+                  ? 'text-indigo-600 dark:text-indigo-400 bg-slate-100 dark:bg-slate-700'
+                  : 'text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400'
               }`}
             >
               {label}
