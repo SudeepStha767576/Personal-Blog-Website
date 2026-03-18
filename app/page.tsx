@@ -7,88 +7,100 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-        <div className="container-blog py-24 sm:py-32">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mb-4 tracking-wide uppercase">
-              Chartered Accountant
+      {/* Premium Hero */}
+      <section className="border-b border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900">
+        <div className="container-blog py-32 sm:py-48">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-6 tracking-widest uppercase">
+              Tax &amp; Accounting Expertise
             </p>
-            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-6 leading-tight">
-              Financial Clarity, Practical Advice
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-stone-900 dark:text-stone-50 mb-8 leading-tight">
+              Strategic Financial Guidance
             </h1>
-            <p className="text-xl text-slate-700 dark:text-slate-300 mb-8 leading-relaxed max-w-2xl">
-              Expert guidance on Income Tax, GST, Audit, and Company Law. Simplified tax strategies and compliance solutions written for clarity.
+            <p className="text-xl sm:text-2xl text-stone-700 dark:text-stone-300 mb-12 leading-relaxed max-w-3xl font-light">
+              Expert counsel on income tax, GST, audits, and compliance. Tailored strategies for your financial success.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-5">
               <Link href="/blog" className="btn-primary">
-                Read Articles
+                Explore Articles
               </Link>
               <Link href="/about" className="btn-secondary">
-                Get Consultation
+                Book a Consultation
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30">
-        <div className="container-blog py-20">
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-50 mb-3">Core Services</h2>
-            <p className="text-slate-600 dark:text-slate-400">Specialized expertise across key areas of taxation and compliance</p>
+      {/* Premium Services Grid */}
+      <section className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-800/50">
+        <div className="container-blog py-32">
+          <div className="mb-20">
+            <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4 tracking-widest uppercase">
+              Our Expertise
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-stone-900 dark:text-stone-50 mb-4">Specialized Services</h2>
+            <p className="text-stone-600 dark:text-stone-400 text-lg">Comprehensive solutions across taxation and compliance</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { 
-                title: 'Income Tax', 
-                desc: 'ITR filing, tax planning, and optimization strategies for individuals and businesses'
+                title: 'Income Tax',
+                icon: '📊',
+                desc: 'Strategic tax planning, ITR filing, and optimization for individuals and businesses'
               },
               { 
-                title: 'GST', 
-                desc: 'Registration, returns filing, and compliance management'
+                title: 'GST',
+                icon: '🧾',
+                desc: 'Registration, returns management, and compliance solutions'
               },
               { 
-                title: 'Audit', 
-                desc: 'Statutory audits, internal audits, and compliance verification'
+                title: 'Audit Services',
+                icon: '🔍',
+                desc: 'Statutory and internal audits with detailed compliance verification'
               },
               { 
-                title: 'Company Law', 
-                desc: 'ROC compliance, statutory requirements, and regulatory guidance'
+                title: 'Company Law',
+                icon: '⚖️',
+                desc: 'ROC compliance, regulatory guidance, and corporate advisory'
               },
             ].map((service) => (
-              <div key={service.title} className="card p-6">
-                <h3 className="font-bold text-slate-900 dark:text-slate-50 mb-3 text-lg">{service.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{service.desc}</p>
+              <div key={service.title} className="card p-8 hover:border-emerald-300 dark:hover:border-emerald-700">
+                <span className="text-4xl mb-4 block">{service.icon}</span>
+                <h3 className="font-bold text-stone-900 dark:text-stone-50 mb-3 text-lg">{service.title}</h3>
+                <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">{service.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Recent Posts */}
-      <section className="container-blog py-20">
-        <div className="flex items-center justify-between mb-12">
+      {/* Premium Articles Section */}
+      <section className="container-blog py-32">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8 mb-16">
           <div>
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-50 mb-2">
+            <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4 tracking-widest uppercase">
+              Insights &amp; Resources
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-stone-900 dark:text-stone-50">
               Latest Articles
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">Stay updated with expert insights and actionable advice</p>
           </div>
           <Link
             href="/blog"
-            className="hidden sm:flex items-center gap-2 text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors"
+            className="hidden sm:flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold transition-colors uppercase tracking-wide"
           >
             View all →
           </Link>
         </div>
 
         {posts.length === 0 ? (
-          <p className="text-slate-500 dark:text-slate-400">No articles published yet. Check back soon!</p>
+          <div className="text-center py-20">
+            <p className="text-stone-500 dark:text-stone-400 text-lg">No articles published yet. Check back soon!</p>
+          </div>
         ) : (
           <>
-            <div className="grid gap-8 mb-8">
+            <div className="grid gap-12 mb-12">
               {posts.map((post, i) => (
                 <PostCard key={post.slug} post={post} featured={i === 0} />
               ))}
@@ -103,18 +115,20 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* CTA Section */}
-      <section className="border-t border-slate-200 dark:border-slate-800 bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950/20 dark:to-slate-900">
-        <div className="container-blog py-20 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-4">
-            Need Expert Guidance?
-          </h2>
-          <p className="text-lg text-slate-700 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-            Book a consultation or discuss your tax and compliance concerns with a professional.
-          </p>
-          <Link href="/about" className="btn-primary">
-            Schedule Consultation
-          </Link>
+      {/* Premium CTA */}
+      <section className="border-t border-stone-200 dark:border-stone-800 bg-gradient-to-br from-emerald-50 via-white to-stone-50 dark:from-emerald-950/30 dark:via-stone-900 dark:to-stone-900">
+        <div className="container-blog py-32 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-5xl sm:text-6xl font-bold text-stone-900 dark:text-stone-50 mb-6">
+              Ready to Transform Your Finances?
+            </h2>
+            <p className="text-lg sm:text-xl text-stone-700 dark:text-stone-300 mb-12 leading-relaxed">
+              Let's discuss your specific financial challenges and develop a tailored strategy for your success.
+            </p>
+            <Link href="/about" className="btn-primary">
+              Schedule a Consultation
+            </Link>
+          </div>
         </div>
       </section>
     </>

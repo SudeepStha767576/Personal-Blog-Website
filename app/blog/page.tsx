@@ -26,32 +26,33 @@ export default function BlogPage({ searchParams }: Props) {
   return (
     <>
       {/* Header */}
-      <section className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-        <div className="container-blog py-16">
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-4">
-            Articles
+      <section className="border-b border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900">
+        <div className="container-blog py-24">
+          <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4 tracking-widest uppercase">Resources</p>
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-stone-900 dark:text-stone-50 mb-6">
+            Financial Insights
           </h1>
-          <p className="text-lg text-slate-700 dark:text-slate-300 max-w-2xl">
-            {allPosts.length} article{allPosts.length !== 1 ? 's' : ''} on Income Tax, GST, Audit, Company Law, and Financial Planning.
+          <p className="text-xl text-stone-700 dark:text-stone-300 max-w-3xl leading-relaxed">
+            {allPosts.length} expertly-crafted article{allPosts.length !== 1 ? 's' : ''} covering Income Tax, GST, Audit, Company Law, and strategic financial planning.
           </p>
         </div>
       </section>
 
-      <div className="container-blog py-12">
+      <div className="container-blog py-16">
         {/* Tag filter */}
         {tags.length > 0 && (
-          <div className="mb-12 pb-8 border-b border-slate-200 dark:border-slate-800">
-            <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4 tracking-wide uppercase">Filter by topic</p>
-            <div className="flex flex-wrap gap-2">
+          <div className="mb-16 pb-12 border-b border-stone-200 dark:border-stone-800">
+            <p className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-6 tracking-widest uppercase">Filter by Topic</p>
+            <div className="flex flex-wrap gap-3">
               <Link
                 href="/blog"
-                className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all uppercase tracking-wide ${
                   !activeTag
-                    ? 'bg-indigo-600 text-white dark:bg-indigo-600'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
+                    ? 'bg-emerald-600 text-white dark:bg-emerald-600'
+                    : 'bg-stone-200 text-stone-900 hover:bg-stone-300 dark:bg-stone-800 dark:text-stone-100 dark:hover:bg-stone-700'
                 }`}
               >
-                All Articles
+                All Topics
               </Link>
               {tags.map((tag) => {
                 const isActive = activeTag === tag
@@ -59,10 +60,10 @@ export default function BlogPage({ searchParams }: Props) {
                   <Link
                     key={tag}
                     href={`/blog?tag=${tag}`}
-                    className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                    className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all uppercase tracking-wide ${
                       isActive
-                        ? 'bg-indigo-600 text-white dark:bg-indigo-600'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
+                        ? 'bg-emerald-600 text-white dark:bg-emerald-600'
+                        : 'bg-stone-200 text-stone-900 hover:bg-stone-300 dark:bg-stone-800 dark:text-stone-100 dark:hover:bg-stone-700'
                     }`}
                   >
                     {tag}
@@ -74,16 +75,16 @@ export default function BlogPage({ searchParams }: Props) {
         )}
 
         {posts.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-slate-600 dark:text-slate-400 text-lg">
-              {activeTag ? `No articles found for "${activeTag}". ` : 'No articles yet. '}
-              <Link href="/blog" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
-                View all articles
-              </Link>
+          <div className="text-center py-24">
+            <p className="text-stone-600 dark:text-stone-400 text-lg mb-4">
+              {activeTag ? `No articles found for "${activeTag}".` : 'No articles published yet.'}
             </p>
+            <Link href="/blog" className="text-emerald-600 dark:text-emerald-400 font-semibold hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+              View all topics →
+            </Link>
           </div>
         ) : (
-          <div className="grid gap-8">
+          <div className="grid gap-12">
             {posts.map((post) => (
               <PostCard key={post.slug} post={post} />
             ))}

@@ -14,26 +14,26 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm">
-      <div className="container-blog flex items-center justify-between py-4">
+    <nav className="sticky top-0 z-50 border-b border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-stone-900/95 backdrop-blur">
+      <div className="container-blog flex items-center justify-between py-5">
         {/* Logo */}
         <Link
           href="/"
-          className="font-bold text-lg text-slate-900 dark:text-slate-50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors tracking-tight"
+          className="font-bold text-xl text-stone-900 dark:text-stone-50 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors tracking-tight"
         >
           CA Insights
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden sm:flex items-center gap-8">
+        <div className="hidden sm:flex items-center gap-12">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-semibold transition-colors uppercase tracking-wide ${
                 pathname.startsWith(href)
-                  ? 'text-indigo-600 dark:text-indigo-400'
-                  : 'text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400'
+                  ? 'text-emerald-600 dark:text-emerald-400'
+                  : 'text-stone-700 hover:text-emerald-600 dark:text-stone-300 dark:hover:text-emerald-400'
               }`}
             >
               {label}
@@ -43,7 +43,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className="sm:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          className="sm:hidden p-2 rounded-lg text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -61,16 +61,16 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="sm:hidden border-t border-slate-200 dark:border-slate-800 py-3 bg-slate-50 dark:bg-slate-800/50">
+        <div className="sm:hidden border-t border-stone-200 dark:border-stone-800 py-3 bg-stone-50 dark:bg-stone-800/50">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className={`block px-4 py-2.5 text-sm font-medium transition-colors ${
+              className={`block px-4 py-3 text-sm font-semibold transition-colors uppercase tracking-wide ${
                 pathname.startsWith(href)
-                  ? 'text-indigo-600 dark:text-indigo-400 bg-slate-100 dark:bg-slate-700'
-                  : 'text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400'
+                  ? 'text-emerald-600 dark:text-emerald-400 bg-stone-100 dark:bg-stone-700'
+                  : 'text-stone-700 hover:text-emerald-600 dark:text-stone-300 dark:hover:text-emerald-400'
               }`}
             >
               {label}
