@@ -106,28 +106,28 @@ export default function PostEditor({ initial, slug, mode }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white dark:bg-slate-900">
       {/* Top bar */}
-      <header className="bg-white border-b border-slate-200 px-6 py-3 flex items-center justify-between sticky top-0 z-10">
-        <div className="flex items-center gap-3">
+      <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="flex items-center gap-4">
           <button
             onClick={() => router.push('/admin')}
-            className="text-slate-500 hover:text-slate-900 text-sm"
+            className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm font-medium transition-colors"
           >
             ← Dashboard
           </button>
-          <span className="text-slate-300">|</span>
-          <h1 className="font-semibold text-slate-900 text-sm">
+          <span className="text-slate-300 dark:text-slate-600">|</span>
+          <h1 className="font-semibold text-slate-900 dark:text-slate-50 text-base">
             {mode === 'new' ? 'New Article' : 'Edit Article'}
           </h1>
         </div>
-        <div className="flex items-center gap-2">
-          {error && <span className="text-sm text-red-600">{error}</span>}
-          {success && <span className="text-sm text-emerald-600">{success}</span>}
+        <div className="flex items-center gap-3">
+          {error && <span className="text-sm text-red-600 dark:text-red-400 font-medium">{error}</span>}
+          {success && <span className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">{success}</span>}
           <button
             onClick={() => handleSave(false)}
             disabled={saving}
-            className="px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 text-sm hover:bg-slate-50 disabled:opacity-50"
+            className="btn-secondary text-sm disabled:opacity-50"
           >
             Save Draft
           </button>
@@ -141,35 +141,46 @@ export default function PostEditor({ initial, slug, mode }: Props) {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main editor */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-6">
           {/* Title */}
-          <input
-            type="text"
-            placeholder="Article title…"
-            value={form.title}
-            onChange={(e) => set('title', e.target.value)}
-            className="w-full text-2xl font-bold px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder-slate-300"
-          />
+          <div>
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-3">
+              Article Title
+            </label>
+            <input
+              type="text"
+              placeholder="Enter article title…"
+              value={form.title}
+              onChange={(e) => set('title', e.target.value)}
+              className="w-full text-3xl font-bold px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-slate-400 transition-all"
+            />
+          </div>
 
           {/* Excerpt */}
-          <textarea
-            placeholder="Short excerpt / summary (shown in card previews)"
-            value={form.excerpt}
-            onChange={(e) => set('excerpt', e.target.value)}
-            rows={2}
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-700 placeholder-slate-400 text-sm resize-none"
-          />
+          <div>
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-3">
+              Excerpt
+            </label>
+            <textarea
+              placeholder="Short summary shown in card previews…"
+              value={form.excerpt}
+              onChange={(e) => set('excerpt', e.target.value)}
+              rows={2}
+              className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-slate-400 text-sm resize-none transition-all"
+            />
+          </div>
 
           {/* Format toolbar */}
-          <div className="bg-white rounded-t-xl border border-b-0 border-slate-200 px-3 py-2 flex flex-wrap gap-1">
+          <div className="bg-slate-50 dark:bg-slate-800/50 rounded-t-lg border border-b-0 border-slate-200 dark:border-slate-700 px-3 py-3 flex flex-wrap gap-2">
+            <span className="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide self-center mr-2">Formatting:</span>
             {FORMAT_BUTTONS.map((btn) => (
               <button
                 key={btn.label}
                 type="button"
                 onClick={() => insertFormat(btn.wrap)}
-                className="px-2 py-1 text-xs font-mono rounded border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                className="px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-700 hover:bg-indigo-50 dark:hover:bg-slate-600 hover:border-indigo-300 dark:hover:border-slate-500 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
               >
                 {btn.label}
               </button>
@@ -177,97 +188,114 @@ export default function PostEditor({ initial, slug, mode }: Props) {
           </div>
 
           {/* Content */}
-          <textarea
-            id="content-area"
-            placeholder="Write your article in Markdown…
+          <div>
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-3">
+              Content
+            </label>
+            <textarea
+              id="content-area"
+              placeholder="Write your article in Markdown…
 
-# Use headings, **bold**, *italic*
-- Bullet lists
-- Are easy
+# Main heading
+## Section heading
+### Subsection
 
-> Blockquotes work too
+Use **bold**, *italic*, `code`
+- Bullet points
+- Work great
 
-Use <Callout type='info'> for highlighted notes."
-            value={form.content}
-            onChange={(e) => set('content', e.target.value)}
-            rows={24}
-            className="w-full px-4 py-3 rounded-b-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono text-sm text-slate-800 placeholder-slate-300 resize-y"
-          />
+Use <Callout type='info'>Your note</Callout> for highlighted boxes."
+              value={form.content}
+              onChange={(e) => set('content', e.target.value)}
+              rows={24}
+              className="w-full px-4 py-3 rounded-b-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm placeholder-slate-400 resize-y transition-all"
+            />
+          </div>
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           {/* Publish status */}
-          <div className="bg-white rounded-xl border border-slate-200 p-4">
-            <h3 className="font-semibold text-slate-900 mb-3 text-sm">Status</h3>
-            <label className="flex items-center gap-2 cursor-pointer">
+          <div className="card p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-slate-50 mb-4 text-sm">Publish Status</h3>
+            <label className="flex items-center gap-3 cursor-pointer group">
               <input
                 type="checkbox"
                 checked={form.published}
                 onChange={(e) => set('published', e.target.checked)}
-                className="w-4 h-4 accent-brand-600"
+                className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500 accent-indigo-600 cursor-pointer"
               />
-              <span className="text-sm text-slate-700">Published (visible to readers)</span>
+              <span className="text-sm text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100 transition-colors">
+                Published (visible to readers)
+              </span>
             </label>
           </div>
 
-          {/* Meta */}
-          <div className="bg-white rounded-xl border border-slate-200 p-4 space-y-3">
-            <h3 className="font-semibold text-slate-900 text-sm">Details</h3>
+          {/* Meta fields */}
+          <div className="card p-6 space-y-5">
+            <h3 className="font-semibold text-slate-900 dark:text-slate-50 text-sm">Article Details</h3>
 
             <div>
-              <label className="block text-xs text-slate-500 mb-1">Date</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-2">
+                Publish Date
+              </label>
               <input
                 type="date"
                 value={form.date}
                 onChange={(e) => set('date', e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-xs text-slate-500 mb-1">
-                Tags <span className="text-slate-400">(comma-separated)</span>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-2">
+                Tags
               </label>
               <input
                 type="text"
                 placeholder="income-tax, gst, audit"
                 value={form.tags}
                 onChange={(e) => set('tags', e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-slate-400 transition-all"
               />
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5">Comma-separated, no spaces</p>
             </div>
 
             <div>
-              <label className="block text-xs text-slate-500 mb-1">Author</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-2">
+                Author
+              </label>
               <input
                 type="text"
                 value={form.author}
                 onChange={(e) => set('author', e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-xs text-slate-500 mb-1">Cover Image URL</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-2">
+                Cover Image URL
+              </label>
               <input
                 type="text"
-                placeholder="https://…"
+                placeholder="https://example.com/image.jpg"
                 value={form.coverImage}
                 onChange={(e) => set('coverImage', e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-slate-400 transition-all"
               />
             </div>
           </div>
 
           {/* Tips */}
-          <div className="bg-brand-50 rounded-xl border border-brand-100 p-4">
-            <h3 className="font-semibold text-brand-800 text-sm mb-2">Writing Tips</h3>
-            <ul className="text-xs text-brand-700 space-y-1">
-              <li>• Use <code className="bg-brand-100 px-1 rounded">##</code> for section headings</li>
-              <li>• Bold key terms with <code className="bg-brand-100 px-1 rounded">**text**</code></li>
-              <li>• Add callout boxes for important notes</li>
-              <li>• End with a call-to-action</li>
+          <div className="card p-6 bg-gradient-to-br from-indigo-50 to-indigo-50/50 dark:from-indigo-900/20 dark:to-indigo-900/10 border-indigo-200 dark:border-indigo-800">
+            <h3 className="font-semibold text-indigo-900 dark:text-indigo-100 text-sm mb-4">Writing Tips</h3>
+            <ul className="text-xs text-indigo-800 dark:text-indigo-200 space-y-2 leading-relaxed">
+              <li>• Use <code className="bg-indigo-100 dark:bg-indigo-900/50 px-1.5 py-0.5 rounded text-xs font-mono">##</code> for sections</li>
+              <li>• Make key terms <strong>bold</strong> for emphasis</li>
+              <li>• Use Callout boxes for important notes</li>
+              <li>• End with a clear call-to-action</li>
+              <li>• Keep paragraphs short and scannable</li>
             </ul>
           </div>
         </div>

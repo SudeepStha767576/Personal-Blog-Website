@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -30,47 +31,58 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <div className="text-4xl mb-3">🏦</div>
-          <h1 className="text-2xl font-bold text-slate-900">CA Insights Admin</h1>
-          <p className="text-slate-500 text-sm mt-1">Sign in to manage your blog</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 px-4">
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="mb-12">
+          <Link href="/" className="inline-block font-bold text-lg text-slate-900 dark:text-slate-50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors mb-8">
+            ← CA Insights
+          </Link>
+          <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-50 mb-2">
+            Admin Access
+          </h1>
+          <p className="text-slate-600 dark:text-slate-400">
+            Manage your blog content and settings
+          </p>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4"
-        >
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 p-8 space-y-6">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
+            <label className="block text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">
               Admin Password
             </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password"
+              placeholder="Enter admin password"
               required
-              className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+              autoFocus
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-50 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
             />
           </div>
 
           {error && (
-            <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>
+            <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 text-sm font-medium">
+              {error}
+            </div>
           )}
 
           <button
             type="submit"
-            disabled={loading}
-            className="w-full btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={loading || !password}
+            className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Signing in…' : 'Sign In'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
 
-        <p className="text-center text-xs text-slate-400 mt-6">
-          <a href="/" className="hover:underline">← Back to blog</a>
+        {/* Footer */}
+        <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-8">
+          <Link href="/" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors">
+            ← Back to blog
+          </Link>
         </p>
       </div>
     </div>
