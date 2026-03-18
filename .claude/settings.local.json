@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"C:\\\\Users\\\\SudipShrestha\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\87c5cd0c-0e26-4a3c-af19-fe50009c5c6b\\\\db8eee98-0041-42e2-808c-2cb9d33e963b\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\SudipShrestha\\\\Downloads\\\\personal-blog-technical-documentation.docx\" /tmp/blog-unpacked/)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:51349/)",
+      "Bash(curl -s -X POST http://localhost:51349/api/admin/login -H \"Content-Type: application/json\" -d '{\"\"password\"\":\"\"admin123\"\"}' -w \"\\\\nStatus: %{http_code}\" -c /tmp/admin_cookies.txt)",
+      "Bash(curl -s -o /dev/null -w \"Dashboard: %{http_code}\\\\n\" http://localhost:51349/admin -b /tmp/admin_cookies.txt)",
+      "Bash(curl -s -o /dev/null -w \"New post page: %{http_code}\\\\n\" http://localhost:51349/admin/posts/new -b /tmp/admin_cookies.txt)"
+    ]
+  }
+}
